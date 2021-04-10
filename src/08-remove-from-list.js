@@ -16,9 +16,19 @@
  *   this.next = null;
  * }
  */
-
-function removeKFromList(/* l, k */) {
-  throw new Error('Not implemented');
-}
+const removeKFromList = (l, k) => {
+  // копируем входной список и избавляемся от ведущих k
+  let copy = l;
+  while (copy.value === k) copy = copy.next;
+  // обходим полученную копию и переставляем указатели
+  let current = copy;
+  while (current) {
+    if (current.next && current.next.value === k) {
+      current.next = current.next.next;
+    }
+    current = current.next;
+  }
+  return copy;
+};
 
 module.exports = removeKFromList;
