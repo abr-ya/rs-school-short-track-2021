@@ -12,8 +12,10 @@
  * For 00-1B-63-84-45-E6, the output should be true.
  *
  */
-function isMAC48Address(/* n */) {
-  throw new Error('Not implemented');
-}
+const oneGropup = (str) => {
+  const res = /^[A-F0-9]{2}$/.test(str);
+  return res;
+};
+const isMAC48Address = (n) => n.split('-').map((el) => oneGropup(el)).filter((el) => el).length === 6;
 
 module.exports = isMAC48Address;
