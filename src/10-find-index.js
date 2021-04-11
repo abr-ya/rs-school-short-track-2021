@@ -12,14 +12,17 @@
  *
  */
 const findIndex = (array, value) => {
-  let res = -1;
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] === value) {
-      res = i;
-      break;
+  let start = 0;
+  let end = array.length - 1;
+  while (end - start > 1) {
+    const mid = Math.round((start + end) / 2);
+    if (array[mid] > value) {
+      end = mid;
+    } else {
+      start = mid;
     }
   }
-  return res;
+  return array[start] === value ? start : end;
 };
 
 module.exports = findIndex;
